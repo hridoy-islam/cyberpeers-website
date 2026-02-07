@@ -2,13 +2,13 @@
 
 import { useRef, useLayoutEffect } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { cn } from "@/utils/utils";
 
-// Only register plugin once in a client component
+// Register GSAP Plugin
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -23,82 +23,98 @@ interface DarkTextSectionProps {
 export function DarkTextSection({ title, description, buttonText, buttonHref }: DarkTextSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-        gsap.fromTo(bgRef.current, 
-            { yPercent: -15, scale: 1.1 },
-            {
-              yPercent: 10,
-              scale: 1, 
-              ease: "none",
-              scrollTrigger: {
-                trigger: containerRef.current,
-                scrub: true, 
-              },
+      // 1. Background Parallax (Cinematic Slow Movement)
+      gsap.fromTo(bgRef.current, 
+        { yPercent: -10, scale: 1.1 },
+        {
+          yPercent: 10,
+          scale: 1, 
+          ease: "none",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true, 
+          },
+        }
+      );
+
+      // 2. Text Reveal Animation (Staggered Slide Up)
+      const animElements = contentRef.current?.children; // Selects h2, p, button-wrapper
+      
+      if (animElements) {
+        gsap.fromTo(animElements, 
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            stagger: 0.15,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: "top 75%", // Starts when section is 75% down viewport
             }
-          );
+          }
+        );
+      }
+
     }, containerRef);
+
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={containerRef} className="relative overflow-hidden bg-[#0c1222]">
+    <section ref={containerRef} className="relative overflow-hidden py-32 lg:py-48 flex items-center justify-center">
       
-      {/* BACKGROUND */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      {/* --- BACKGROUND LAYER --- */}
+      <div className="absolute inset-0 z-0 h-[120%] -top-[10%] w-full pointer-events-none">
         <div 
           ref={bgRef}
-          className="absolute inset-0 bg-cover bg-center opacity-30"
-          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80')` }} 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url('/office.jpg')` }} 
         />
-        <div className="absolute inset-0 bg-[#0e1629]/90 mix-blend-multiply" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0e1629] via-transparent to-[#0e1629]" />
+        {/* Dark Overlays for Text Readability */}
+        <div className="absolute inset-0 bg-black/70 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-[#0e1629]" />
+        <div className="absolute inset-0 bg-black/40" /> {/* Extra dimming */}
       </div>
 
-      <div className="container relative z-10 px-4 md:px-6">
-        <div className="flex flex-col items-center text-center">
+      {/* --- CONTENT LAYER --- */}
+      <div className="container relative z-10 ">
+        <div 
+          ref={contentRef} 
+          className="flex flex-col items-center text-center max-w-6xl mx-auto space-y-10"
+        >
           
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="w-full max-w-7xl mb-10"
-          >
-            <h2 className="font-heading font-extrabold text-4xl md:text-5xl lg:text-[60px] tracking-tighter text-white leading-[1.15]">
-              {title}
-            </h2>
-          </motion.div>
+          {/* Title */}
+          <h2 className="font-bold text-4xl lg:text-6xl tracking-tighter text-white leading-[1.1] drop-shadow-2xl">
+            {title}
+          </h2>
           
-          <motion.div 
-             initial={{ opacity: 0, y: 30 }}
-             whileInView={{ opacity: 1, y: 0 }}
-             transition={{ duration: 0.8, delay: 0.1 }}
-             viewport={{ once: true }}
-             className="w-full max-w-5xl" 
-          > 
-            <p className="font-sans font-medium text-[17px] md:text-[18px] leading-[1.8] text-white text-justify antialiased opacity-90">
-              {description}
-            </p>
-          </motion.div>
+          {/* Description */}
+          <p className="text-lg md:text-xl leading-[1.8] text-slate-300 font-medium mx-auto opacity-90">
+            {description}
+          </p>
           
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="mt-14"
-          >
+          {/* Button Wrapper */}
+          <div className="pt-4">
             <Link href={buttonHref || "/contact"}>
-              <Button size="xl" className="bg-primary hover:bg-white hover:text-primary rounded-full font-black uppercase tracking-widest text-[13px] h-16 pl-10 pr-3">
-                 {buttonText}
-                 <span className="ml-5 h-10 w-10 bg-white/20 rounded-full flex items-center justify-center transition-transform group-hover:rotate-45">
-                    <ArrowUpRight size={20} />
+              <Button 
+                size="xl" 
+                
+              >
+                <span>{buttonText}</span>
+                <span className="ml-4 h-10 w-10 bg-black/10 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:rotate-45 group-hover:scale-110">
+                   <ArrowUpRight size={20} />
                 </span>
               </Button>
             </Link>
-          </motion.div>
+          </div>
 
         </div>
       </div>

@@ -9,8 +9,8 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#0b1120] text-white pt-20 pb-10 overflow-hidden">
-      <div className="container px-4 md:px-6">
+    <footer className="bg-secondary text-white pt-20 pb-10 overflow-hidden">
+      <div className="container ">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           
           {/* Brand Column */}
@@ -30,7 +30,7 @@ export function Footer() {
             </p>
             
             <div className="space-y-5">
-              <h4 className="text-white text-lg font-black tracking-tight uppercase italic">
+              <h4 className="text-white text-lg font-black tracking-tight uppercase ">
                 Follow Us On
               </h4>
               <div className="flex gap-4">
@@ -49,30 +49,35 @@ export function Footer() {
           </div>
 
           {/* Dynamic Link Columns */}
-          {siteConfig.footerNav.map((section) => (
-            <div key={section.title} className="space-y-8 lg:pl-8">
-              <h4 className="text-primary text-xl font-black uppercase tracking-tight">
-                {section.title}
-              </h4>
-              <ul className="space-y-4">
-                {section.items.map((item) => (
-                  <li key={item.label}>
-                    <Link
-                      href={item.href}
-                      className="group flex items-center gap-3 text-white transition-colors"
-                    >
-                      <div className="w-5 h-5 rounded-full border border-primary flex items-center justify-center transition-colors group-hover:bg-primary">
-                        <ArrowRight size={10} className="text-primary group-hover:text-white" />
-                      </div>
-                      <span className="font-bold text-[15px] uppercase tracking-wide transition-transform group-hover:translate-x-1">
-                        {item.label}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+         {siteConfig.footerNav.map((section) => (
+  <div key={section.title} className="space-y-6 lg:pl-8">
+    <h4 className="text-white font-bold text-lg tracking-wider uppercase opacity-90">
+      {section.title}
+    </h4>
+    <ul className="space-y-3">
+      {section.items.map((item) => (
+        <li key={item.label}>
+          <Link
+            href={item.href}
+            className="group flex items-center gap-3 text-white hover:text-white transition-colors duration-300"
+          >
+            {/* The Morphing Indicator */}
+            <div className="relative flex items-center">
+              {/* The Dot (Default state) */}
+              <span className="h-1.5 w-1.5 rounded-full bg-slate-600 transition-all duration-300 group-hover:w-8 group-hover:bg-primary" />
+              
+             
             </div>
-          ))}
+
+            <span className="text-md font-medium transition-transform duration-300 group-hover:translate-x-1">
+              {item.label}
+            </span>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  </div>
+))}
 
           {/* Contact Info Column */}
           <div className="space-y-8">
@@ -113,7 +118,7 @@ export function Footer() {
 
         {/* Copyright */}
         <div className="mt-20 pt-10 border-t border-white/10 text-center">
-          <p className="text-[14px] font-bold text-white tracking-wide uppercase italic opacity-60">
+          <p className="text-sm font-medium text-white tracking-wide uppercase  ">
             &copy; {currentYear} All Rights Reserved By Zuhayr Consultancy Limited T/A Cyberpeers
           </p>
         </div>

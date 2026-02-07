@@ -33,69 +33,71 @@ export function SplitSection({
 }: SplitSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
 
-  const imageY = useTransform(scrollYProgress, [0, 1], [-40, 40]);
+  
 
   return (
-    <section ref={containerRef} className="bg-white overflow-hidden">
-      <div className="container px-4">
-        <div 
-          className={cn(
-            "grid gap-12 lg:grid-cols-2 lg:gap-24 items-center",
-          )}
-        >
-          {/* IMAGE SIDE */}
+    <section ref={containerRef} className="overflow-hidden py-24 lg:py-32 bg-background relative">
+      <div className="container ">
+        <div className="grid gap-16 lg:grid-cols-2 lg:gap-24 items-center">
+          
+          {/* --- IMAGE SIDE --- */}
           <motion.div
-            initial={{ opacity: 0, x: imagePosition === "left" ? -60 : 60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true }}
+          
             className={cn(
-              "relative group perspective-1000",
+              "relative group",
               imagePosition === "left" ? "lg:order-1" : "lg:order-2"
             )}
           >
-            <div className="absolute -inset-6 bg-gradient-to-tr from-primary/10 to-sky-400/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            {/* Decorative Gradient Blob behind image */}
+            <div className="absolute -inset-4 bg-gradient-to-tr from-primary/20 to-violet-400/20 rounded-[3rem] blur-3xl opacity-60 group-hover:opacity-100 transition-opacity duration-1000" />
+            
             <motion.div 
-              style={{ y: imageY }}
-              className="relative aspect-square md:aspect-[4/3] lg:aspect-square w-full overflow-hidden rounded-[2.5rem] bg-slate-100 border border-slate-100"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }} // smooth ease
+              viewport={{ once: true, margin: "-100px" }}
+              className="relative aspect-[4/3] w-full overflow-hidden rounded-[2.5rem] border border-white/10 shadow-2xl shadow-black/5 bg-slate-100"
             >
               <Image
                 src={image}
                 alt={title}
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
-              <div className="absolute inset-0 bg-black/5" />
+              {/* Inner shine effect */}
+              <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-[2.5rem]" />
             </motion.div>
           </motion.div>
 
-          {/* TEXT SIDE */}
-          <div className={cn(
-            "flex flex-col space-y-6",
-            imagePosition === "left" ? "lg:order-2" : "lg:order-1"
-          )}>
+          {/* --- TEXT SIDE --- */}
+          <div
+            className={cn(
+              "flex flex-col justify-center",
+              imagePosition === "left" ? "lg:order-2" : "lg:order-1"
+            )}
+          >
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+              viewport={{ once: true, margin: "-100px" }}
             >
               {pretitle && (
-                <span className="inline-block py-1.5 px-5 rounded-full bg-primary/10 text-primary text-[11px] font-bold tracking-[2px] uppercase mb-5">
-                  {pretitle}
-                </span>
+                <div className="flex items-center gap-2 mb-6">
+                  <span className="h-[1px] w-8 bg-primary"></span>
+                  <span className="text-primary font-bold tracking-[3px] uppercase text-sm">
+                    {pretitle}
+                  </span>
+                </div>
               )}
 
-              <h2 className="text-4xl md:text-5xl lg:text-[60px] font-black tracking-tighter text-slate-900 leading-[1.1] mb-8">
+              <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter text-foreground leading-[1.05] mb-8">
                 {title}
               </h2>
 
-              <div className="space-y-6 text-[17px] font-medium text-slate-900 leading-[1.8] text-justify">
+              <div className="space-y-6 text-lg md:text-xl text-muted-foreground leading-relaxed">
                 <p>{description}</p>
                 {description2 && <p>{description2}</p>}
                 {description3 && <p>{description3}</p>}
@@ -103,12 +105,16 @@ export function SplitSection({
 
               <div className="pt-10">
                 <Link href={buttonHref || "/contact"}>
-                    <Button variant="brand" size="xl" className="pl-10 pr-3 h-14">
-                        {buttonText}
-                        <span className="ml-5 h-8 w-8 bg-white/20 rounded-full flex items-center justify-center transition-colors">
-                            <ArrowUpRight size={18} />
-                        </span>
-                    </Button>
+                  <Button 
+                    size="xl" 
+                    className="relative overflow-hidden rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg group pl-8 pr-6 h-14 text-lg font-semibold
+                    after:absolute after:inset-0 after:-z-10 after:translate-x-[-150%] after:bg-gradient-to-r after:from-transparent after:via-white/30 after:to-transparent after:transition-transform after:duration-500 hover:after:translate-x-[150%]"
+                  >
+                    <span>{buttonText}</span>
+                    <span className="ml-3 bg-white/20 rounded-full p-1 transition-transform group-hover:rotate-45">
+                       <ArrowUpRight size={18} />
+                    </span>
+                  </Button>
                 </Link>
               </div>
             </motion.div>

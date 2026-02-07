@@ -17,7 +17,7 @@ export const homeContent = {
     description: "With a decade of experience in the Digital industry, we proved that combining strategic thinking and expertise will create a fascinating digital experience.",
     buttonText: "Schedule a Call",
     buttonHref: "/contact",
-    image: "/feature-image.jpg",
+    image: "/marketing.jpg",
   },
   whyCyberpeers: {
     pretitle: "Effortlessly Data Record",
@@ -25,7 +25,7 @@ export const homeContent = {
     description: "Cyberpeers help you achieve more building online presence, leads, sales, and revenue from our Web Design and SEO services. Helping Businesses across the UK to Rank on Page 1 of Google & Receive High-Quality Customer Inquiries.",
     buttonText: "Book a call",
     buttonHref: "/contact",
-    image: "/why-cyberpeers-image.jpg",
+    image: "/seo.jpg",
   },
   websiteDesignGrowth: {
     title: "Website design to help your business to grow",
@@ -35,7 +35,7 @@ export const homeContent = {
   },
   goodWebsiteFeatures: {
     title: "What makes a good website & what is quality web design?",
-    image: "/website-design-feature.jpg",
+    image: "/web-design.jpg",
     features: [
       "Ease Of Use & Navigation",
       "Responsive AND Mobile-Friendly",
