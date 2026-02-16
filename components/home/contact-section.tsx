@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useLayoutEffect, useRef } from "react";
-import { useForm } from "react-hook-form";
+import React, { useLayoutEffect, useRef, useState } from "react";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactFormSchema, type ContactFormValues } from "@/schemas";
 import { homeContent } from "@/utils/content";
@@ -14,6 +14,13 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"; // Shadcn Select
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -25,26 +32,58 @@ export function ContactSection() {
   const formRef = useRef<HTMLDivElement>(null);
   const infoRef = useRef<HTMLDivElement>(null);
 
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, isSubmitSuccessful },
+    control,
+    formState: { errors, isSubmitting },
     reset,
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      service: "",
+      message: "",
+    }
   });
 
   const onSubmit = async (data: ContactFormValues) => {
-    // API logic simulation
-    await new Promise((resolve) => setTimeout(resolve, 1500)); 
-    console.log("Form Data:", data);
-    reset();
+    try {
+      // Send to admin
+      const adminRes = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      // Send confirmation to user
+      const userRes = await fetch("/api/send-email-user", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (userRes.ok && adminRes.ok) {
+        setIsSubmitted(true);
+        reset(); // Reset form fields
+
+        // Hide success message after 3 seconds
+        setTimeout(() => setIsSubmitted(false), 3000);
+      } else {
+        console.error("Failed to send message");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
 
   // GSAP Animation
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      
       // Animate Info Side (Left)
       gsap.fromTo(infoRef.current?.children || [],
         { opacity: 0, x: -30 },
@@ -76,19 +115,14 @@ export function ContactSection() {
           }
         }
       );
-
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative bg-slate-50 py-24 lg:py-32 overflow-hidden">
-      
-      {/* Background Decor */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-slate-100/50 skew-x-12 translate-x-20 pointer-events-none" />
-
-      <div className="container px-4 md:px-6 relative z-10">
+    <section ref={sectionRef} className="relative py-24 lg:py-32 overflow-hidden">
+      <div className="container relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           
           {/* --- LEFT SIDE: INFO --- */}
@@ -101,7 +135,7 @@ export function ContactSection() {
               <h2 className="font-extrabold text-4xl md:text-5xl lg:text-6xl tracking-tight text-slate-900 leading-[1.1]">
                 {info.title}
               </h2>
-              <p className="font-medium text-lg text-slate-500 leading-relaxed max-w-md">
+              <p className="font-medium text-lg leading-relaxed max-w-md">
                 {info.description}
               </p>
             </div>
@@ -134,14 +168,13 @@ export function ContactSection() {
             className="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)] border border-slate-100 relative group"
           >
             {/* Success Overlay */}
-            {isSubmitSuccessful && (
+            {isSubmitted && (
                <div className="absolute inset-0 z-10 bg-white/90 backdrop-blur-sm rounded-[2.5rem] flex flex-col items-center justify-center text-center p-8 animate-in fade-in duration-300">
                   <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
                     <CheckCircle2 size={32} />
                   </div>
                   <h3 className="text-2xl font-bold text-slate-900">Message Sent!</h3>
                   <p className="text-slate-500 mt-2">We will get back to you shortly.</p>
-                  <Button variant="outline" className="mt-6" onClick={() => reset()}>Send another</Button>
                </div>
             )}
 
@@ -180,23 +213,31 @@ export function ContactSection() {
                 {errors.phone && <p className="text-red-500 text-xs pl-1">{errors.phone.message}</p>}
               </div>
 
+              {/* SHADCN SELECT INTEGRATION */}
               <div className="space-y-2">
-                <div className="relative">
-                  <select
-                    {...register("service")}
-                    className="flex h-12 w-full items-center justify-between rounded-xl border border-slate-100 bg-slate-50 px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:bg-white focus:outline-none focus:ring-2 focus:ring-ring focus:border-primary/50 disabled:cursor-not-allowed disabled:opacity-50 appearance-none text-slate-600 transition-all cursor-pointer"
-                  >
-                    <option value="" disabled className="text-slate-400">Select a service...</option>
-                    {form.services.map((s) => (
-                      <option key={s} value={s}>{s}</option>
-                    ))}
-                  </select>
-                  <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none opacity-50">
-                     <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                     </svg>
-                  </div>
-                </div>
+                <Controller
+                  control={control}
+                  name="service"
+                  render={({ field }) => (
+                    <Select onValueChange={field.onChange} value={field.value || ""}>
+                      <SelectTrigger 
+                        className={cn(
+                          "h-12 bg-slate-50 border-slate-100 focus:bg-white focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all rounded-xl text-slate-600",
+                          !field.value && "text-muted-foreground"
+                        )}
+                      >
+                        <SelectValue placeholder="Select a service..." />
+                      </SelectTrigger>
+                      <SelectContent className="rounded-xl">
+                        {form.services.map((s) => (
+                          <SelectItem key={s} value={s} className="cursor-pointer">
+                            {s}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
                 {errors.service && <p className="text-red-500 text-xs pl-1">{errors.service.message}</p>}
               </div>
 
@@ -212,8 +253,8 @@ export function ContactSection() {
               <Button 
                 type="submit" 
                 disabled={isSubmitting}
-                size="xl"
-                className="w-full h-14 "
+                size="lg"
+                className="w-full h-14 font-semibold text-[15px] group"
               >
                 {isSubmitting ? (
                   <span className="flex items-center gap-2">
@@ -222,7 +263,7 @@ export function ContactSection() {
                   </span>
                 ) : (
                   <span className="flex items-center gap-2">
-                    {form.buttonText} 
+                    {form.buttonText || "Send Message"} 
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </span>
                 )}
@@ -245,8 +286,8 @@ function ContactItem({ icon: Icon, title, content, href }: { icon: any, title: s
         <Icon size={22} strokeWidth={2} />
       </div>
       <div className="pt-1">
-        <h4 className="font-bold text-slate-900 text-lg mb-0.5">{title}</h4>
-        <p className="font-medium text-slate-500 leading-relaxed text-[16px]">{content}</p>
+        <h4 className="font-bold text-lg mb-0.5">{title}</h4>
+        <p className="font-medium leading-relaxed text-[16px]">{content}</p>
       </div>
     </Wrapper>
   )

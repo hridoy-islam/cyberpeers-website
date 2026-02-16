@@ -1,19 +1,25 @@
 "use client";
 
 import React from "react";
-import { careerContent } from "@/utils/content";
-import { ChevronDown, Filter } from "lucide-react";
+import { Filter } from "lucide-react";
+import { jobCategories, jobTypes, jobLocations } from "@/utils/jobData"; // Adjust path if needed
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"; // shadcn ui imports
 
 interface JobFiltersProps {
   onFilterChange: (filters: { category: string; type: string; location: string }) => void;
 }
 
 export function JobFilters({ onFilterChange }: JobFiltersProps) {
-  const { categories, types, locations } = careerContent.filters;
-  
-  const [selectedCategory, setSelectedCategory] = React.useState("");
-  const [selectedType, setSelectedType] = React.useState("");
-  const [selectedLocation, setSelectedLocation] = React.useState("");
+  // Initialize states with the "All" options (which are at index 0)
+  const [selectedCategory, setSelectedCategory] = React.useState(jobCategories[0]);
+  const [selectedType, setSelectedType] = React.useState(jobTypes[0]);
+  const [selectedLocation, setSelectedLocation] = React.useState(jobLocations[0]);
 
   // Notify parent component when any filter changes
   React.useEffect(() => {
@@ -24,54 +30,58 @@ export function JobFilters({ onFilterChange }: JobFiltersProps) {
     });
   }, [selectedCategory, selectedType, selectedLocation, onFilterChange]);
 
-  const selectClasses = "w-full appearance-none rounded-2xl border border-input bg-background py-3 pl-4 pr-10 text-[13px] font-bold text-foreground focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all cursor-pointer";
+  // Reusable classes for the trigger (matching your previous styling closely)
+  const triggerClasses = "w-full rounded-2xl border-input bg-background py-6 pl-4 pr-4 text-[13px] font-bold text-foreground focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all cursor-pointer";
 
   return (
-    <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6 py-8 mb-10 border-y border-slate-100">
-      <div className="flex items-center gap-2 text-slate-400 mr-2 shrink-0">
+    <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6 py-2">
+      <div className="flex items-center gap-2  mr-2 shrink-0">
         <Filter size={18} />
         <span className="text-xs font-bold uppercase tracking-widest">Filters</span>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
         {/* Category Filter */}
-        <div className="relative">
-          <select
-            className={selectClasses}
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-          >
-            <option value="">{categories[0]}</option>
-            {categories.slice(1).map(c => <option key={c} value={c}>{c}</option>)}
-          </select>
-          <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 pointer-events-none" />
-        </div>
+        <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+          <SelectTrigger className={triggerClasses}>
+            <SelectValue placeholder="Select Category" />
+          </SelectTrigger>
+          <SelectContent className="rounded-xl">
+            {jobCategories.map((c) => (
+              <SelectItem key={c} value={c} className="cursor-pointer text-[13px] font-medium py-2">
+                {c}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
 
         {/* Type Filter */}
-        <div className="relative">
-          <select
-            className={selectClasses}
-            value={selectedType}
-            onChange={(e) => setSelectedType(e.target.value)}
-          >
-            <option value="">{types[0]}</option>
-            {types.slice(1).map(t => <option key={t} value={t}>{t}</option>)}
-          </select>
-          <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 pointer-events-none" />
-        </div>
+        <Select value={selectedType} onValueChange={setSelectedType}>
+          <SelectTrigger className={triggerClasses}>
+            <SelectValue placeholder="Select Job Type" />
+          </SelectTrigger>
+          <SelectContent className="rounded-xl">
+            {jobTypes.map((t) => (
+              <SelectItem key={t} value={t} className="cursor-pointer text-[13px] font-medium py-2">
+                {t}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
 
         {/* Location Filter */}
-        <div className="relative">
-          <select
-            className={selectClasses}
-            value={selectedLocation}
-            onChange={(e) => setSelectedLocation(e.target.value)}
-          >
-            <option value="">{locations[0]}</option>
-            {locations.slice(1).map(l => <option key={l} value={l}>{l}</option>)}
-          </select>
-          <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 pointer-events-none" />
-        </div>
+        <Select value={selectedLocation} onValueChange={setSelectedLocation}>
+          <SelectTrigger className={triggerClasses}>
+            <SelectValue placeholder="Select Location" />
+          </SelectTrigger>
+          <SelectContent className="rounded-xl">
+            {jobLocations.map((l) => (
+              <SelectItem key={l} value={l} className="cursor-pointer text-[13px] font-medium py-2">
+                {l}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
     </div>
   );

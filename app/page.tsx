@@ -8,8 +8,8 @@ import { DualChecklist } from "@/components/home/dual-checklist";
 import { Cta } from "@/components/home/cta";
 import { ContactSection } from "@/components/home/contact-section"; 
 import SmoothScroll from "@/components/shared/smooth-scroll";
-import { ServicesMarquee } from "@/components/home/services-marquee";
 import { MouseFollower } from "@/components/shared/mouse-follower";
+import { ServicesGrid } from "@/components/home/services-grid";
 
 export default function Home() {
   return (
@@ -20,11 +20,11 @@ export default function Home() {
         <SplitSection {...homeContent.analytics} imagePosition="right" />
         <SplitSection {...homeContent.whyCyberpeers} imagePosition="left" />
         <DarkTextSection {...homeContent.websiteDesignGrowth} />
-        <ImageChecklist />
-        <DarkTextSection {...homeContent.seoAgency} />
-        <DualChecklist />
-        <ThreeColFeatures />
-        <ServicesMarquee />
+        {/* <ImageChecklist /> */}
+        {/* <DarkTextSection {...homeContent.seoAgency} /> */}
+        {/* <DualChecklist /> */}
+        {/* <ThreeColFeatures /> */}
+        <ServicesGrid />
         <Cta />
         <ContactSection />
       </main>

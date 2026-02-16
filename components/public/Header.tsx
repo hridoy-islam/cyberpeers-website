@@ -78,10 +78,9 @@ export function Header() {
           <div className="flex items-center gap-3">
             <Link href="/contact" className="hidden md:block">
                <Button 
-                 variant="brand" 
                  className={cn(scrolled ? "h-10 px-6 text-[11px]" : "h-12 px-8 text-[12px]")}
                >
-                 Contact Us
+                 CONTACT US
                </Button>
             </Link>
 

@@ -71,7 +71,7 @@ export function Hero() {
       {/* Content Layer */}
       <motion.div
         style={{ opacity: contentOpacity, y: contentY }}
-        className="container relative z-10 text-center "
+        className="container relative z-10 text-center max-w-5xl "
       >
         <div className="space-y-8">
           <motion.span
@@ -111,7 +111,7 @@ export function Hero() {
                 size="xl"
               >
                 {buttonText}
-                <span className="ml-4 h-10 w-10 bg-white/20 rounded-full flex items-center justify-center">
+                <span className="ml-8 h-10 w-10 bg-white/20 rounded-full flex items-center justify-center">
                   <ArrowUpRight size={20} />
                 </span>
               </Button>

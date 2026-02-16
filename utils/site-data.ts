@@ -9,9 +9,9 @@ export const siteConfig = {
   
   navItems: [
     { label: "Home", href: "/" },
-    { label: "About Us", href: "/about-us" }, // Changed to match your folder /about-us
+    { label: "About Us", href: "/about" }, // Changed to match your folder /about-us
     { label: "Services", href: "/services" },
-    { label: "Career", href: "/careers" },    // Changed to match your folder /careers
+    { label: "Career", href: "/career" },    // Changed to match your folder /careers
   ],
   
   links: {
@@ -33,9 +33,10 @@ export const siteConfig = {
       title: "Quick Links",
       items: [
         { label: "Home", href: "/" },
-        { label: "About Us", href: "/about-us" },
+        { label: "About Us", href: "/about" },
         { label: "Services", href: "/services" },
         { label: "Contact Us", href: "/contact" },
+        { label: "Career", href: "/career" },
       ],
     },
     {
