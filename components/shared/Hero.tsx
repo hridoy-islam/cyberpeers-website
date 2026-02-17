@@ -21,7 +21,7 @@ export function Hero({
   buttonHref = "/contact",
 }: HeroProps) {
   return (
-    <section className="relative pt-44 md:pt-52 pb-24 md:pb-32 bg-secondary text-center overflow-hidden">
+<section className="relative pt-44 md:pt-52 pb-24 md:pb-32 bg-secondary text-center overflow-hidden border-0">
       
       {/* --- BACKGROUND EFFECTS (From Cta) --- */}
       
@@ -86,11 +86,16 @@ export function Hero({
       </div>
 
       {/* --- BOTTOM SVG WAVE (From AboutHero) --- */}
-      <div className="absolute bottom-[-1px] left-0 w-full overflow-hidden leading-[0]">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-[60px] md:h-[100px] fill-background">
+<div className="absolute bottom-[-2px] left-0 w-full overflow-hidden leading-none">
+        <svg
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+          className="block w-full h-[60px] md:h-[100px] fill-background"
+        >
           <path d="M0,0 C300,130 900,130 1200,0 L1200,120 L0,120 Z" />
         </svg>
       </div>
+
     </section>
   );
 }

@@ -28,7 +28,7 @@ export const homeContent = {
     image: "/seo.jpg",
   },
   websiteDesignGrowth: {
-    title: "Website design that helps your business grow",
+    title: "Complete Digital & Business Solutions for Modern Companies",
     description: "Are you looking for professional website design services? Are you the owner or manager of a small or medium-sized business in the UK? Do you have ambitious growth plans? These days, having a powerful and effective online presence is crucial to achieving this.",
     buttonText: "Book a Call",
     buttonHref: "/contact",
