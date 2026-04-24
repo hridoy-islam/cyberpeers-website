@@ -1,6 +1,6 @@
 export const jobData = [
   {
-    id: 1,
+    id: 2,
     slug: "mern-developer-cyberpeers",
     title: "MERN Developer",
     category: "MERN",
@@ -86,7 +86,7 @@ export const jobData = [
   },
 
   {
-    id: 2,
+    id: 3,
     slug: "junior-graphic-designer-cyberpeers",
     title: "Junior Graphic Designer",
     category: "Design",
@@ -158,7 +158,7 @@ export const jobData = [
     deadline: ""
   },
  {
-    id: 3,
+    id: 4,
     slug: "mobile-app-developer-react-native-cyberpeers",
     title: "Mobile App Developer (React Native)",
     category: "Mobile Development",
@@ -241,7 +241,7 @@ export const jobData = [
     deadline: ""
   },
   {
-    id: 4,
+    id: 5,
     slug: "full-stack-developer-cyberpeers",
     title: "Full-Stack Developer",
     category: "Full Stack",
@@ -313,7 +313,7 @@ export const jobData = [
     deadline: ""
   },
 {
-    id: 5,
+    id: 6,
     slug: "react-js-developer-cyberpeers",
     title: "React.js Developer",
     category: "React Developer",
@@ -367,7 +367,7 @@ export const jobData = [
     deadline: ""
   },
   {
-    id: 6,
+    id: 7,
     slug: "graphic-designer-cyberpeers",
     title: "Graphic Designer",
     category: "Design",
@@ -414,7 +414,7 @@ export const jobData = [
     deadline: ""
   },
   {
-    id: 7,
+    id: 8,
     slug: "mern-stack-software-engineer-intern-cyberpeers",
     title: "MERN Stack Software Engineer Intern",
     category: "MERN",
@@ -461,7 +461,7 @@ export const jobData = [
     deadline: ""
   },
   {
-    id: 8,
+    id: 9,
     slug: "react-native-mobile-app-developer-cyberpeers",
     title: "React Native Mobile App Developer",
     category: "Mobile Development",
@@ -502,7 +502,7 @@ export const jobData = [
     deadline: ""
   },
   {
-    "id": 9,
+    "id": 1,
     "slug": "advertising-marketing-executive-cyberpeers",
     "title": "Advertising and Marketing Executive",
     "category": "Digital Marketing",
