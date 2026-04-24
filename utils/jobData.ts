@@ -500,6 +500,48 @@ export const jobData = [
     weOffer: [],
     link: "https://career.cyberpeers.co.uk/jobs/apply/689dba4604b293aa70b49cde",
     deadline: ""
+  },
+  {
+    "id": 9,
+    "slug": "advertising-marketing-executive-cyberpeers",
+    "title": "Advertising and Marketing Executive",
+    "category": "Digital Marketing",
+    "jobType": "Full Time",
+    "jobLocation": "Remote",
+    "jobdescription": "At Cyberpeers, we’re all about delivering bespoke digital solutions that truly make an impact. We specialize in creating custom web and mobile applications, backed by powerful digital marketing strategies. We are looking for an innovative and driven Advertising and Marketing Executive to lead our marketing initiatives and amplify our clients' digital presence. As a core member of our growth team, you will be responsible for planning, executing, and optimizing multi-channel marketing campaigns. You’ll work closely with our designers, developers, and project managers to craft compelling narratives, manage advertising budgets, and ensure that our digital solutions reach their maximum audience potential while delivering exceptional ROI.",
+    "skills": {
+      "Campaign Strategy & Execution": [
+        "Developing and executing comprehensive digital marketing strategies across various channels including social media, email, and search engines.",
+        "Managing end-to-end advertising campaigns, from conceptualization and budget allocation to launch and post-campaign analysis.",
+        "Collaborating with the design and content teams to produce engaging ad creatives, landing pages, and promotional materials."
+      ],
+      "Digital Advertising & SEO/SEM": [
+        "Setting up, monitoring, and optimizing PPC campaigns on platforms such as Google Ads, Meta (Facebook/Instagram) Ads, and LinkedIn Ads.",
+        "Implementing SEO best practices to improve organic search rankings and drive high-quality traffic to targeted web assets.",
+        "Conducting A/B testing on ad copies, visuals, and targeting to continuously improve conversion rates."
+      ],
+      "Market Research & Analytics": [
+        "Utilizing tools like Google Analytics, Tag Manager, and native social insights to track campaign performance and user behavior.",
+        "Conducting market research and competitor analysis to identify new growth opportunities and industry trends.",
+        "Generating detailed performance reports and translating data into actionable insights for stakeholders."
+      ]
+    },
+    "qualification": [
+      "Degree in Marketing, Business Administration, Communications, or a related field (or equivalent practical experience).",
+      "Strong analytical mindset with a passion for numbers, performance metrics, and data-driven decision-making.",
+      "Excellent written and verbal communication skills, with the ability to craft compelling marketing copy and present ideas clearly."
+    ],
+    "experience": [
+      "Proven experience in managing digital marketing campaigns and paid advertising (Google Ads, Meta Ads Manager, etc.).",
+      "Solid understanding of SEO/SEM principles, keyword research, and website optimization techniques.",
+      "Familiarity with marketing automation and CRM tools (e.g., HubSpot, Mailchimp, or Salesforce).",
+      "Experience analyzing campaign performance using Google Analytics and creating comprehensive ROI reports.",
+      "Ability to manage multiple projects and marketing budgets effectively in a fast-paced environment.",
+      "Bonus: Previous experience working in a tech agency, software development firm, or SaaS marketing environment."
+    ],
+    "weOffer": [],
+    "link": "https://career.cyberpeers.co.uk/jobs/apply/69eb36fe7487400b8c3142ba",
+    "deadline": ""
   }
 
 ];
@@ -516,7 +558,8 @@ export const jobCategories = [
   "Design",
   "Full Stack",
   "React Developer",
-  "Mobile Development"
+  "Mobile Development",
+  "Digital Marketing"
 ];
 
 export const jobLocations = [
