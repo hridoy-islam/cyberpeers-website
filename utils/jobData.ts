@@ -505,44 +505,53 @@ export const jobData = [
     "id": 1,
     "slug": "advertising-marketing-executive-cyberpeers",
     "title": "Advertising and Marketing Executive",
-    "category": "Digital Marketing",
-    "jobType": "Full Time",
-    "jobLocation": "Remote",
-    "jobdescription": "At Cyberpeers, we’re all about delivering bespoke digital solutions that truly make an impact. We specialize in creating custom web and mobile applications, backed by powerful digital marketing strategies. We are looking for an innovative and driven Advertising and Marketing Executive to lead our marketing initiatives and amplify our clients' digital presence. As a core member of our growth team, you will be responsible for planning, executing, and optimizing multi-channel marketing campaigns. You’ll work closely with our designers, developers, and project managers to craft compelling narratives, manage advertising budgets, and ensure that our digital solutions reach their maximum audience potential while delivering exceptional ROI.",
+  "category": "Digital Marketing",
+    "jobType": "Part Time",
+    "jobLocation": "London",
+    "jobdescription": "At Cyberpeers, we are a specialist digital agency delivering custom web and mobile applications alongside integrated digital marketing solutions for a growing portfolio of business clients. We are looking for an experienced Advertising and Marketing Executive to lead campaign strategy and provide the commercial insight our clients need to compete effectively in their markets. Reporting to the Managing Director, this role sits at the intersection of client advisory and campaign delivery. You will be the primary point of contact for marketing strategy across a number of client accounts, responsible for understanding each client's commercial position, identifying where and how they should be reaching their audiences, and recommending the mix of channels, messaging, and promotional activity most likely to drive results. This is not a purely executional role — you will be expected to bring strategic recommendations to clients, present findings clearly, and advise on broader decisions including how products or services are positioned, priced, or promoted, based on what the data and market research tells you.",
     "skills": {
-      "Campaign Strategy & Execution": [
-        "Developing and executing comprehensive digital marketing strategies across various channels including social media, email, and search engines.",
-        "Managing end-to-end advertising campaigns, from conceptualization and budget allocation to launch and post-campaign analysis.",
-        "Collaborating with the design and content teams to produce engaging ad creatives, landing pages, and promotional materials."
-      ],
-      "Digital Advertising & SEO/SEM": [
-        "Setting up, monitoring, and optimizing PPC campaigns on platforms such as Google Ads, Meta (Facebook/Instagram) Ads, and LinkedIn Ads.",
-        "Implementing SEO best practices to improve organic search rankings and drive high-quality traffic to targeted web assets.",
-        "Conducting A/B testing on ad copies, visuals, and targeting to continuously improve conversion rates."
-      ],
-      "Market Research & Analytics": [
-        "Utilizing tools like Google Analytics, Tag Manager, and native social insights to track campaign performance and user behavior.",
-        "Conducting market research and competitor analysis to identify new growth opportunities and industry trends.",
-        "Generating detailed performance reports and translating data into actionable insights for stakeholders."
-      ]
+        "Client Consultation and Strategic Advisory": [
+            "Meeting with clients to develop a detailed understanding of their business model, target customer profile, competitive environment, and current marketing challenges.",
+            "Translating client briefs into structured marketing strategies, presenting options and recommendations clearly and with supporting rationale.",
+            "Advising clients on adjustments to their promotional approach, pricing presentation, product positioning, or packaging of services where market research or campaign data indicates an opportunity to improve performance.",
+            "Acting as a trusted point of contact throughout campaign delivery, keeping clients informed of progress and recommending modifications where performance warrants it."
+        ],
+        "Campaign Planning and Execution": [
+            "Developing and owning multi-channel campaign plans covering paid social, search advertising, email, and organic channels — with clear objectives, audience definitions, budget allocations, and success metrics for each.",
+            "Briefing internal creative and development teams on client requirements and campaign specifications, overseeing asset production, and signing off deliverables before launch.",
+            "Managing live campaigns across platforms including Google Ads, Meta, and LinkedIn, making performance-driven decisions on budget, targeting, and creative to maximise return on investment.",
+            "Designing and interpreting structured tests across copy, audience segments, and creative formats to generate learning that improves future campaign performance."
+        ],
+        "Market Research and Audience Intelligence": [
+            "Conducting primary and secondary research into client markets, including competitor activity, audience behaviour, pricing benchmarks, and emerging channel trends.",
+            "Collating research findings into clear outputs — written reports, presentations, or briefs — and presenting conclusions and recommendations directly to clients and internal stakeholders.",
+            "Using findings to inform not just campaign decisions but broader advisory conversations with clients about where their product or service offering may need to evolve."
+        ],
+        "Performance Analysis and Reporting": [
+            "Monitoring campaign performance across all active channels using tools including Google Analytics and native platform dashboards, translating data into insight rather than simply reporting numbers.",
+            "Producing regular structured performance reports for clients, with clear commentary on what is working, what is not, and what actions are recommended as a result.",
+            "Setting and tracking KPIs for each client engagement, taking ownership of performance against agreed targets."
+        ]
     },
     "qualification": [
-      "Degree in Marketing, Business Administration, Communications, or a related field (or equivalent practical experience).",
-      "Strong analytical mindset with a passion for numbers, performance metrics, and data-driven decision-making.",
-      "Excellent written and verbal communication skills, with the ability to craft compelling marketing copy and present ideas clearly."
+        "A degree or equivalent qualification in marketing, business, communications, or a related discipline — or demonstrable professional experience at RQF Level 3 or above that evidences equivalent depth of knowledge and skill.",
+        "Strong client-facing communication skills — you will be advising business owners and senior stakeholders, so the ability to present ideas clearly, handle questions confidently, and build trust over time is essential.",
+        "Sound commercial judgement, including the ability to interpret market research and translate it into practical recommendations on positioning, promotion, or channel mix."
     ],
     "experience": [
-      "Proven experience in managing digital marketing campaigns and paid advertising (Google Ads, Meta Ads Manager, etc.).",
-      "Solid understanding of SEO/SEM principles, keyword research, and website optimization techniques.",
-      "Familiarity with marketing automation and CRM tools (e.g., HubSpot, Mailchimp, or Salesforce).",
-      "Experience analyzing campaign performance using Google Analytics and creating comprehensive ROI reports.",
-      "Ability to manage multiple projects and marketing budgets effectively in a fast-paced environment.",
-      "Bonus: Previous experience working in a tech agency, software development firm, or SaaS marketing environment."
+        "Proven experience managing digital marketing campaigns across paid and organic channels, with the ability to operate both strategically and analytically.",
+        "Familiarity with Google Analytics, tag management tools, and major paid media platforms including Google Ads, Meta, and LinkedIn.",
+        "Demonstrated experience in a client-facing advisory role, translating data and market insights into actionable strategic recommendations.",
+        "Experience overseeing creative asset production and briefing internal teams to deliver campaign specifications."
     ],
-    "weOffer": [],
+    "weOffer": [
+        "A genuine vacancy for a role that does not currently exist within the business, created as Cyberpeers scales its retained client base and builds a dedicated marketing function.",
+        "The opportunity to take full ownership of client marketing strategy, reducing reliance on the founding team and building a scalable marketing function that serves multiple accounts simultaneously.",
+        "A role at the intersection of strategic advisory and hands-on campaign delivery, working directly with business owners and senior stakeholders."
+    ],
     "link": "https://career.cyberpeers.co.uk/jobs/apply/69eb36fe7487400b8c3142ba",
     "deadline": ""
-  }
+  },
 
 ];
 
