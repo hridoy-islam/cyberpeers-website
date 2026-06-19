@@ -16,34 +16,49 @@ export default function CareerPage() {
   // Initialize with jobData so all jobs show on first load
 const [filteredJobs, setFilteredJobs] = React.useState(
   jobData
-    .slice() // avoid mutating original
-    .sort((a, b) => a.id - b.id)
+    .slice()
+    .sort((a, b) => a.title.localeCompare(b.title))
     .map(job => ({ ...job, id: String(job.id) }))
 );
 
-
- const handleFilterChange = React.useCallback(
+const handleFilterChange = React.useCallback(
   (filters: { category: string; type: string; location: string }) => {
     let tempJobs = jobData;
 
     if (filters.category && filters.category !== "All Job Category") {
-      tempJobs = tempJobs.filter(job => job.category === filters.category);
+      tempJobs = tempJobs.filter(
+        (job) => job.category === filters.category
+      );
     }
+
     if (filters.type && filters.type !== "All Job Type") {
-      tempJobs = tempJobs.filter(job => job.jobType === filters.type);
+      tempJobs = tempJobs.filter(
+        (job) => job.jobType === filters.type
+      );
     }
+
     if (filters.location && filters.location !== "All Job Location") {
-      tempJobs = tempJobs.filter(job => job.jobLocation === filters.location);
+      tempJobs = tempJobs.filter(
+        (job) => job.jobLocation === filters.location
+      );
     }
 
-    // ✅ Sort ascending by id
-    tempJobs = tempJobs.slice().sort((a, b) => a.id - b.id);
+    // Alphabetical order by job title
+    tempJobs = tempJobs
+      .slice()
+      .sort((a, b) =>
+        a.title.localeCompare(b.title)
+      );
 
-    setFilteredJobs(tempJobs.map(job => ({ ...job, id: String(job.id) })));
+    setFilteredJobs(
+      tempJobs.map(job => ({
+        ...job,
+        id: String(job.id)
+      }))
+    );
   },
   []
 );
-
   const { title, subtitle } = careerContent.hero;
 
   return (

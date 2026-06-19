@@ -1,5 +1,11 @@
-import { Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebook,
+  faLinkedin,
+  faPinterest,
+} from "@fortawesome/free-brands-svg-icons";
 export const siteConfig = {
   name: "Cyberpeers",
   description: "Cyberpeers is aiming to deliver bespoke solutions by building applications for web and mobile with Digital Marketing.",
@@ -14,18 +20,16 @@ export const siteConfig = {
     { label: "Career", href: "/career" },    // Changed to match your folder /careers
   ],
   
-  links: {
-    facebook: "https://facebook.com",
-    linkedin: "https://linkedin.com",
-    twitter: "https://twitter.com",
-    instagram: "https://instagram.com",
+links: {
+    facebook: "https://www.facebook.com/cyberrpeers",
+    linkedin: "https://www.linkedin.com/company/cyberpeers/",
+    pinterest: "https://uk.pinterest.com/cyberrpeers/?actingBusinessId=1117174388723187679",
   },
-  
+
   socials: [
-    { icon: Facebook, href: "https://facebook.com" },
-    { icon: Linkedin, href: "https://linkedin.com" },
-    { icon: Twitter, href: "https://twitter.com" },
-    { icon: Instagram, href: "https://instagram.com" }
+    { icon: faFacebook, href: "https://www.facebook.com/cyberrpeers" },
+    { icon: faLinkedin, href: "https://www.linkedin.com/company/cyberpeers/" },
+    { icon: faPinterest, href: "https://uk.pinterest.com/cyberrpeers/" },
   ],
   
   footerNav: [

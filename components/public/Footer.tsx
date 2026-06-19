@@ -3,20 +3,20 @@
 import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/utils/site-data";
-import { ArrowRight, MapPin, Phone, Mail } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { MapPin, Phone, Mail } from "lucide-react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-secondary text-white pt-20 pb-10 overflow-hidden">
-      <div className="container ">
+      <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           
           {/* Brand Column */}
           <div className="space-y-8">
             <Link href="/" className="block relative h-12 w-48">
-              {/* Ensure image exists in /public */}
               <Image
                 src="/cyberpeers.png"
                 alt="Cyberpeers Logo"
@@ -30,7 +30,7 @@ export function Footer() {
             </p>
             
             <div className="space-y-5">
-              <h4 className="text-white text-lg font-black tracking-tight uppercase ">
+              <h4 className="text-white text-lg font-black tracking-tight uppercase">
                 Follow Us On
               </h4>
               <div className="flex gap-4">
@@ -41,7 +41,8 @@ export function Footer() {
                     target="_blank"
                     className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center transition-all hover:bg-primary hover:border-primary hover:scale-110"
                   >
-                    <social.icon size={18} className="text-white" />
+                    {/* Fixed: Render object configuration via FontAwesomeIcon element */}
+                    <FontAwesomeIcon icon={social.icon} className="text-white h-[18px] w-[18px]" />
                   </Link>
                 ))}
               </div>
@@ -49,35 +50,30 @@ export function Footer() {
           </div>
 
           {/* Dynamic Link Columns */}
-         {siteConfig.footerNav.map((section) => (
-  <div key={section.title} className="space-y-6 lg:pl-8">
-    <h4 className="text-white font-bold text-lg tracking-wider uppercase opacity-90">
-      {section.title}
-    </h4>
-    <ul className="space-y-3">
-      {section.items.map((item) => (
-        <li key={item.label}>
-          <Link
-            href={item.href}
-            className="group flex items-center gap-3 text-white hover:text-white transition-colors duration-300"
-          >
-            {/* The Morphing Indicator */}
-            <div className="relative flex items-center">
-              {/* The Dot (Default state) */}
-              <span className="h-1.5 w-1.5 rounded-full bg-slate-600 transition-all duration-300 group-hover:w-8 group-hover:bg-primary" />
-              
-             
+          {siteConfig.footerNav.map((section) => (
+            <div key={section.title} className="space-y-6 lg:pl-8">
+              <h4 className="text-white font-bold text-lg tracking-wider uppercase opacity-90">
+                {section.title}
+              </h4>
+              <ul className="space-y-3">
+                {section.items.map((item) => (
+                  <li key={item.label}>
+                    <Link
+                      href={item.href}
+                      className="group flex items-center gap-3 text-white hover:text-white transition-colors duration-300"
+                    >
+                      <div className="relative flex items-center">
+                        <span className="h-1.5 w-1.5 rounded-full bg-slate-600 transition-all duration-300 group-hover:w-8 group-hover:bg-primary" />
+                      </div>
+                      <span className="text-md font-medium transition-transform duration-300 group-hover:translate-x-1">
+                        {item.label}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-
-            <span className="text-md font-medium transition-transform duration-300 group-hover:translate-x-1">
-              {item.label}
-            </span>
-          </Link>
-        </li>
-      ))}
-    </ul>
-  </div>
-))}
+          ))}
 
           {/* Contact Info Column */}
           <div className="space-y-8">
@@ -118,7 +114,7 @@ export function Footer() {
 
         {/* Copyright */}
         <div className="mt-20 pt-10 border-t border-white/10 text-center">
-          <p className="text-sm font-medium text-white tracking-wide uppercase  ">
+          <p className="text-sm font-medium text-white tracking-wide uppercase">
             &copy; {currentYear} All Rights Reserved By Zuhayr Consultancy Limited T/A Cyberpeers
           </p>
         </div>
